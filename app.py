@@ -10,9 +10,9 @@ st.set_page_config(page_title="Connexion - SMQ", layout="centered")
 #(encoder une image locale en Base64 et l'appliquer en arrière-plan avec du CSS personnalisé)
 def add_bg_from_local(image_file):
     if os.path.exists(image_file):
-        with open(image_file, "rb") as image_file:
-            encoded_string = base64.b64encode(image_file.read()).decode()
-       st.markdown(
+        with open(image_file, "rb") as image_file_data:
+            encoded_string = base64.b64encode(image_file_data.read()).decode()
+        st.markdown(
             f"""
             <style>
             .stApp {{
@@ -34,6 +34,7 @@ def add_bg_from_local(image_file):
             """,
             unsafe_allow_html=True
         )
+        
 # --- GESTION DE LA SESSION DE CONNEXION ---
 if "connected" not in st.session_state:
     st.session_state["connected"] = False    # Initialise l'état de connexion de la session à "False" s'il n'existe pas encore
@@ -43,8 +44,8 @@ if "connected" not in st.session_state:
 # PAGE 1 : ÉCRAN DE CONNEXION
 # ==========================================
 if not st.session_state["connected"]:
-    # On applique le logo en arrière-plan
-    add_bg_from_local("logo.png")
+    # On applique le logo en arrière-plan (نحيناها بـ commentaire باش الخلفية ترجع بيضاء نظيفة)
+    # add_bg_from_local("logo.png")
     
     st.title("🔒 Accès Sécurisé - SMQ")
     st.write("Veuillez saisir vos identifiants pour accéder au système de management de la qualité.")    #Affiche l'écran de connexion sécurisé (avec logo en arrière-plan) si l'utilisateur n'est pas connecté

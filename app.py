@@ -12,29 +12,11 @@ def add_bg_from_local(image_file):
     if os.path.exists(image_file):
         with open(image_file, "rb") as image_file:
             encoded_string = base64.b64encode(image_file.read()).decode()
-        st.markdown(
-            f"""
-            <style>
-            .stApp {{
-                background-image: url("data:image/png;base64,{encoded_string}");
-                background-attachment: fixed;
-                background-size: contain; /* S'adapte à l'écran sans se déformer */
-                background-repeat: no-repeat;
-                background-position: center; /* Centre le logo */
-                opacity: 0.15; /* Rend le logo très clair en fond pour que le texte reste lisible */
-            }}
-            /* Style pour rendre le formulaire de connexion bien visible et opaque */
-            [data-testid="stForm"] {{
-                background-color: rgba(255, 255, 255, 0.95);
-                padding: 30px;
-                border-radius: 10px;
-                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            }}
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-
+        st.markdown("<h1 style='text-align: center;'>🔒 Accès Sécurisé - SMQ</h1>", unsafe_allow_html=True)
+with st.form("login_form"):
+    identifiant = st.text_input("Identifiant")
+    password = st.text_input("Mot de passe", type="password")
+    submit_button = st.form_submit_button("Se connecter")
         
 # --- GESTION DE LA SESSION DE CONNEXION ---
 if "connected" not in st.session_state:

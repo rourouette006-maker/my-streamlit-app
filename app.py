@@ -813,7 +813,7 @@ if st.session_state.get("nav_menu") not in nav_items:
     st.session_state["nav_menu"] = "home"
 menu = st.sidebar.radio(" ", nav_items, format_func=lambda k: t[k], key="nav_menu")
 st.sidebar.markdown("---")
-st.sidebar.selectbox("🎨 " + L("Arrière-plan", "Background", "الخلفية"), BG_KEYS,
+st.sidebar.selectbox( L("Arrière-plan", "Background", "الخلفية"), BG_KEYS,
                      format_func=lambda k: tr(BG_FR[k]), key="bg")
 if st.sidebar.button("⎋  " + t["logout"], key="logout_btn"):
     st.session_state.connected = False
